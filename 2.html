@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tanisha.c | Cybersecurity Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* General Reset and Setup */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Cyber Pink Palette */
+            --color-background: #0A0A16; /* Dark Navy/Black */
+            --color-primary: #FF66AA; /* Bright Magenta/Pink for accents */
+            --color-secondary: #C8D1F6; /* Light Lavender/Gray for body text */
+            --color-heading: #FFFFFF; /* Pure White for headings */
+            --color-card: #1C102A; /* Darker Purple for cards */
+            --font-mono: 'Roboto Mono', monospace; /* Technical Font */
+            --border-radius: 8px;
+        }
+
+        body {
+            background-color: var(--color-background);
+            color: var(--color-secondary);
+            font-family: var(--font-mono);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+            padding: 0 5%; /* Padding on the sides */
+        }
+
+        /* --- Typography --- */
+        h1, h2, h3 {
+            color: var(--color-heading);
+            margin-bottom: 0.5em;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 2em;
+            border-bottom: 2px solid var(--color-primary);
+            padding-bottom: 10px;
+            margin-bottom: 40px;
+            display: inline-block;
+        }
+
+        .dot {
+            color: var(--color-primary); /* Highlight the '.c' */
+        }
+
+        /* --- Reusable Components --- */
+
+        section {
+            padding: 80px 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Buttons */
+        .btn-primary, .btn-hire {
+            display: inline-block;
+            padding: 10px 20px;
+            border: 2px solid var(--color-primary);
+            border-radius: var(--border-radius);
+            color: var(--color-primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9em;
+            font-weight: 700;
+        }
+
+        .btn-primary:hover, .btn-hire:hover {
+            background-color: rgba(255, 102, 170, 0.15); /* Subtle hover glow */
+            box-shadow: 0 0 15px var(--color-primary);
+        }
+
+        /* Cards (for knowledge and projects) */
+        .card, .project-card {
+            background-color: var(--color-card);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            border-left: 3px solid var(--color-primary); /* Attractive accent line */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover, .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.7); /* Lift effect */
+        }
+
+        /* --- Header & Navigation --- */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: var(--color-background);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: var(--color-heading);
+        }
+
+        .navbar a {
+            color: var(--color-secondary);
+            margin-left: 25px;
+            text-decoration: none;
+            font-size: 1em;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: var(--color-primary);
+        }
+        
+        .navbar .btn-primary {
+            margin-left: 25px;
+        }
+
+        /* --- Hero Section --- */
+        .hero-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 80vh;
+            padding-top: 50px;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero-content h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        
+        .hero-content p {
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+
+        .quick-links {
+            margin-top: 30px;
+        }
+
+        .quick-links a {
+            margin-right: 20px;
+        }
+        
+        .hero-image img {
+            width: 200px; /* Adjust size as needed */
+            height: 200px;
+            border-radius: 50%;
+            border: 4px solid var(--color-primary);
+            box-shadow: 0 0 20px var(--color-primary);
+        }
+
+
+        /* --- Skills Tags --- */
+        .skill-tags {
+            margin: 30px 0 50px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .tag {
+            background-color: var(--color-card);
+            color: var(--color-primary);
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 0.9em;
+            border: 1px solid var(--color-primary); 
+            transition: background-color 0.3s;
+        }
+
+        .tag:hover {
+            background-color: rgba(255, 102, 170, 0.1);
+        }
+
+        .knowledge-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        /* --- Projects Section --- */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .project-card h3 {
+            color: var(--color-heading);
+            margin-bottom: 10px;
+        }
+
+        .project-card a {
+            color: var(--color-primary);
+            text-decoration: none;
+            font-size: 0.9em;
+            display: block;
+            margin-top: 15px;
+        }
+        
+        .project-card a:hover {
+            text-decoration: underline;
+        }
+
+        /* --- Contact Section & Form --- */
+        .contact-section {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .contact-section h2 {
+            border-bottom: none;
+            text-align: center;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            margin-top: 40px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            background-color: var(--color-card);
+            border: 1px solid rgba(255, 102, 170, 0.5);
+            color: var(--color-heading);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            font-family: var(--font-mono);
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 8px rgba(255, 102, 170, 0.5);
+        }
+        
+        .contact-form button {
+            cursor: pointer;
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            border-top: 1px solid var(--color-card);
+            font-size: 0.85em;
+            color: var(--color-secondary);
+        }
+
+        /* --- Media Queries for Responsiveness --- */
+        @media (max-width: 900px) {
+            .hero-section {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+            .hero-image {
+                margin-bottom: 40px;
+            }
+            .navbar {
+                display: none; /* Hide complex navbar on small screens, simplify navigation with a burger menu (JS not included for simplicity) */
+            }
+            .header {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo">Tanisha<span class="dot">.c</span></div>
+        <nav class="navbar">
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+            <a href="tanisha_c_resume.pdf" target="_blank" class="btn-primary">Resume</a> 
+        </nav>
+    </header>
+
+    <section class="hero-section" id="about">
+        <div class="hero-content">
+            <h1>Hi, I'm Tanisha — Cybersecurity Enthusiast</h1>
+            <p>2nd -year student focusing on *Web App Security, **Digital Forensics*, and automation for quick recon and reporting.</p>
+            <div class="quick-links">
+                <a href="https://github.com/Tanisha-0108" target="_blank" class="btn-primary">GitHub</a>
+                <a href="https://linkedin.com/in/tanishac" target="_blank" class="btn-primary">LinkedIn</a>
+                <a href="#contact" class="btn-hire">Hire Me</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="12345.jpg" alt="Tanisha C"> 
+        </div>
+    </section>
+
+    <section class="skills-section" id="skills">
+        <h2>Cybersecurity Skills & Tools</h2>
+        <div class="skill-tags">
+            <span class="tag">Web App Security</span>
+            <span class="tag">Digital Forensics</span>
+            <span class="tag">Kali Linux</span>
+            <span class="tag">Nmap</span>
+            <span class="tag">Burp Suite</span>
+            <span class="tag">Wireshark</span>
+            <span class="tag">Python / Bash</span>
+            <span class="tag">CEH (ongoing)</span>
+            <span class="tag">Linux & Networking</span>
+        </div>
+        
+        <div class="knowledge-cards">
+            <div class="card">
+                <h3>Web App Security – Real CTF Write-up</h3>
+                <p>Step-by-step write-up showing discovery, exploitation (XSS, SQLi), and remediation suggestions with secure coding notes.</p>
+            </div>
+            <div class="card">
+                <h3>Digital Forensics Case – Timeline Analysis</h3>
+                <p>Disk image analysis, file carve examples, timeline creation, and evidence reporting format.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="projects-section" id="projects">
+        <h2>Key Projects & Demos</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <h3>Web CTF Lab</h3>
+                <p>Practice environment with write-ups and remediation steps targeting OWASP Top 10 vulnerabilities.</p>
+                <a href="#">View Demo & Code</a>
+            </div>
+            <div class="project-card">
+                <h3>Forensics ToolKit</h3>
+                <p>Scripts for image analysis, timelines, and deleted file recovery with example outputs.</p>
+                <a href="#">View Demo & Code</a>
+            </div>
+            <div class="project-card">
+                <h3>Automated Recon Scripts (Python)</h3>
+                <p>Recon parsers and reporting scripts to speed up lab and real-world workflows.</p>
+                <a href="https://github.com/Tanisha-0108/recon-scripts" target="_blank">View Code on GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <h2>Contact Me</h2>
+        <p>I'm open to discussing new projects, internships, or security collaboration. Let's connect!</p>
+        <form class="contact-form" action="#" method="POST" id="contactForm">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email Address" required>
+            <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
+            <button type="submit" class="btn-primary">Send Message</button>
+        </form>
+        <p id="formMessage" style="margin-top: 20px; color: var(--color-primary);"></p>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Tanisha.c | Designed for Cybersecurity</p>
+    </footer>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // In a real application, you would send this data to a server (e.g., using Formspree or a backend script).
+            // For a simple demo, we just give feedback:
+            document.getElementById('formMessage').textContent = 'Thank you, your message has been sent!';
+            this.reset();
+        });
+    </script>
+
+</body>
+</html>
